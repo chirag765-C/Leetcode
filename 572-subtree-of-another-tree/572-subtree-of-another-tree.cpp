@@ -12,8 +12,11 @@
 class Solution {
 public:
     bool tocheck(TreeNode*root,TreeNode*subroot){
+      if(!root && !subroot){
+          return true;
+      }
         if(!root || !subroot){
-            return root==subroot;
+            return false;
         }
         if(root->val!=subroot->val){
             return false;
