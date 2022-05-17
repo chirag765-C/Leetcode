@@ -14,7 +14,7 @@ public:
         seen[0][0] = 1;
         static int dir[4][2] = {{0, 1}, {0, -1}, {1, 0}, { -1, 0}};
 
-        while (true) {
+        while (!pq.empty()) {
             auto p = pq.top ();
             pq.pop ();
             res = max(res, p.t);
@@ -27,5 +27,6 @@ public:
                 }
             }
         }
+        return res;
     }
 };
