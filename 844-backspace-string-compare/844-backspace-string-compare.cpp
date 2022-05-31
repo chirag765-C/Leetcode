@@ -3,31 +3,23 @@ public:
     bool backspaceCompare(string s, string t) {
 string str="";
         string ptr="";
-        int j=0;
         for(int i=0;i<s.size();i++){
-            j=str.size();
-            if( s[i]=='#'){
-                if(j>0){
-                str.pop_back();
-                continue;
-                }
-                else if(j==0){
+            if(s[i]=='#'){
+                if(str.size()==0){
                     continue;
                 }
+                str.pop_back();
+                continue;
             }
             str+=s[i];
         }
-        j=0;
         for(int i=0;i<t.size();i++){
-            j=ptr.size();
             if(t[i]=='#'){
-                if(j>0){
-                ptr.pop_back();
-                continue;
-                }
-                else{
+                if(ptr.size()==0){
                     continue;
                 }
+                ptr.pop_back();
+                continue;
             }
             ptr+=t[i];
         }
