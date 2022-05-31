@@ -1,11 +1,15 @@
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
-        vector<int>num;
+      priority_queue<int,vector<int>,greater<int>>minh;  
         for(int i=0;i<nums.size();i++){
-            num.push_back(nums[i]*nums[i]);
+            minh.push(nums[i]*nums[i]);
         }
-        sort(num.begin(),num.end());
-        return num;
+        int i=0;
+     while(minh.size()>0){
+         nums[i++]=minh.top();
+         minh.pop();
+     }
+        return nums;
     }
 };
