@@ -1,13 +1,11 @@
 class Solution {
 public:
     int kthFactor(int n, int k) {
-        vector<int>v;
-        for(int i=1;i<=(n);i++){
-            if(n%i==0){
-                v.push_back(i);
-            }
+ for(int i = 1; i <= n/2; i++){
+            if(n % i == 0) k--;
+            if(k == 0) return i;
         }
-        
-        return (k-1)<v.size()?v[k-1]:-1;
+        if(k == 1) return n;
+        return -1;
     }
 };
