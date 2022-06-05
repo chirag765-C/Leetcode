@@ -1,8 +1,26 @@
 class Solution {
 public:
     int maxProductDifference(vector<int>& nums) {
-     sort(nums.begin(),nums.end());
-    int n=nums.size();
-        return (nums[n-1]*nums[n-2])-(nums[0]*nums[1]);
+    int mx1,mx2;
+        int mn1,mn2;
+        mx1=mx2=INT_MIN;
+        mn1=mn2=INT_MAX;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>mx1){
+                mx2=mx1;
+                mx1=nums[i];
+            }
+            else if(nums[i]>mx2){
+                mx2=nums[i];
+            }
+            if(nums[i]<mn1){
+                mn2=mn1;
+                mn1=nums[i];
+            }
+            else if(nums[i]<mn2){
+                mn2=nums[i];
+            }
+        }
+        return (mx1*mx2)-(mn1*mn2);
     }
 };
