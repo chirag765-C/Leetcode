@@ -27,7 +27,7 @@ for(int i=1;i<n+1;i++){
         }
     }
 }
-return dp[n-1][target];
+return dp[n][target];
 
     
     
