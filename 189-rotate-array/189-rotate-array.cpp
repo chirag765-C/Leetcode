@@ -10,20 +10,16 @@ public:
             return;
         }
         
+
         if(n<k){
-            k=abs(n-k);
-            reverse(nums.begin(),nums.begin()+abs(n-k));
-            reverse(nums.begin()+abs(n-k),nums.end());
-            reverse(nums.begin(),nums.end());
-            return;
+            k=k%n;
         }
         
-        else{
         k=abs(n-k);
         reverse(nums.begin(),nums.begin()+k);
         reverse(nums.begin()+k,nums.end());
         reverse(nums.begin(),nums.end());
-        }
+        
         
     }
 };
