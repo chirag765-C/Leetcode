@@ -2,25 +2,21 @@ class Solution {
 public:
     vector<vector<int>>ans;
    set<vector<int>>st;
-    void f(int num,int j,vector<int>&v,vector<int>nums){
-        while(num>0){
-            if((num&1)==1){
-                v.push_back(nums[j]);
-            }
-            j++;
-            num=num>>1;
-        }
-       st.insert(v);
-    }
-    
+  void tofind(int i,vector<int>nums,vector<int>&v){
+      if(i==nums.size()){
+          st.insert(v);
+          return;
+      }
+      v.push_back(nums[i]);
+      tofind(i+1,nums,v);
+      v.pop_back();
+      tofind(i+1,nums,v);
+      
+  }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(),nums.end());
-    for(int i=0;i<(1<<nums.size());i++){
-                vector<int>v;
-
-        f(i,0,v,nums);
-        
-    }
+        vector<int>v;
+    tofind(0,nums,v);
  for(auto it:st){
      ans.push_back(it);
  }      
