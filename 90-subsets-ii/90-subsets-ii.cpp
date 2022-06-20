@@ -3,15 +3,12 @@ public:
     vector<vector<int>>ans;
    set<vector<int>>st;
   void tofind(int i,vector<int>nums,vector<int>&v){
-      if(i==nums.size()){
-          st.insert(v);
-          return;
+  st.insert(v);
+      for(int j=i;j<nums.size();j++){
+          v.push_back(nums[j]);
+          tofind(j+1,nums,v);
+          v.pop_back();
       }
-      v.push_back(nums[i]);
-      tofind(i+1,nums,v);
-      v.pop_back();
-      tofind(i+1,nums,v);
-      
   }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(),nums.end());
