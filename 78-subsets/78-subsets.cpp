@@ -1,24 +1,22 @@
 class Solution {
 public:
-     vector<vector<int>>ans;
-   void tocheck(vector<int>nums,int i){
-       vector<int>v;
-       int j=0;
-       while(i>0){
-       if((i&1)==1){
-           v.push_back(nums[j]);
-       }    
-           j++;
-           i=i>>1;
-       }
-       ans.push_back(v);
-       return;
-   }
+    vector<vector<int>>ans;
+    void tofind(int i,vector<int>nums,vector<int>&v){
+        if(i==nums.size()){
+            ans.push_back(v);
+            return;
+        }
+       
+            v.push_back(nums[i]);
+            tofind(i+1,nums,v);
+            v.pop_back();
+         tofind(i+1,nums,v);
+        }
+    
     vector<vector<int>> subsets(vector<int>& nums) {
-        int n=nums.size();
-       for(int i=0;i<(1<<n);i++){
-           tocheck(nums,i);
-       }
-      return ans;
+     vector<int>v;
+        tofind(0,nums,v);   
+        
+        return ans;
     }
 };
