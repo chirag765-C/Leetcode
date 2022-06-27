@@ -18,19 +18,25 @@ for(int i=0;i<a.size();i++){
     if(s.empty()){
         break;
     }
-    char ch=*s.begin();
-    if(ch<a[i]){
-        char ch2=a[i];
-        for(int j=0;j<a.size();j++){
-            if(a[j]==ch){
-                a[j]=ch2;
-            }
-            else if(a[j]==ch2){
-                a[j]=ch;
-            }
-        }
-        break;
-    }
+ char ch=*s.begin();
+ if(ch<a[i]){
+     char ch2=a[i];
+     for(int j=0;j<a.size();j++){
+         if(ch==a[j]){
+             a[j]=ch2;
+         }
+         else if(ch2==a[j]){
+             a[j]=ch;
+         }
+         
+     }
+     break;
+ }
+ 
+ 
+ 
+ 
+ 
 }
 return a;
     }
