@@ -1,48 +1,44 @@
 class Solution {
 public:
     bool validPalindrome(string s) {
-   int i=0;
-        int j=s.size()-1;
-        int cnt1=0;
+        
+        int cnt1=0,cnt2=0;
+     int i=0;
+     int j=s.size()-1;
         while(i<j){
-            if(s[i]==s[j]){
-                i++;
-                j--;
-            }
-            else{
-                i++;
+            if(s[i]!=s[j]){
                 cnt1++;
+                i++;
             }
-            if(cnt1>1){
+           else{
+            i++;
+            j--;
+           }
+             if(cnt1>1){
                 break;
             }
         }
-        int cnt2=0;
-        i=0;
+i=0;
         j=s.size()-1;
-        while(i<j)
-        {
-            if(s[i]==s[j]){
-                i++;
-                j--;
-            }
-            else{
-                j--;
+        while(i<j){
+            if(s[i]!=s[j]){
                 cnt2++;
+                j--;
             }
-            if(cnt2>1){
+           else{
+            i++;
+            j--;
+           }
+             if(cnt2>1){
                 break;
             }
-            
-        } 
-    if(cnt1==1 || cnt2==1){
-        return true;
-    }
-        if(cnt1==0 || cnt2==0){
+        }
+        if(cnt1==1 || cnt2==1){
             return true;
         }
+        else if(cnt1==0 and cnt2==0){
+           return true; 
+        }
         return false;
-    
-    
     }
 };
