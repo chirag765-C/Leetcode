@@ -1,20 +1,21 @@
 class Solution {
 public:
-    int f(vector<vector<int>>&triangle,int m,int i,int j,vector<vector<int>>&dp){
-        if(i==m-1){
-            return triangle[i][j];
-        }
-        if(dp[i][j]!=-1){
-            return dp[i][j];
-        }
-        int down,rdown;
-         down=triangle[i][j]+f(triangle,m,i+1,j,dp);
-         rdown=triangle[i][j]+f(triangle,m,i+1,j+1,dp);
-        return dp[i][j]=min(down,rdown);
-    }
+   
     int minimumTotal(vector<vector<int>>& triangle) {
         int m=triangle.size();
-        vector<vector<int>>dp(m,vector<int>(m,-1));
-        return f(triangle,m,0,0,dp);
+        vector<int>front(m,0);
+        vector<int>curr(m,0);
+        for(int j=0;j<m;j++){
+            front[j]=triangle[m-1][j];
+        }
+        for(int i=m-2;i>=0;i--){
+            for(int j=i;j>=0;j--){
+                int down=triangle[i][j]+front[j];
+                int rdown=triangle[i][j]+front[j+1];
+                curr[j]=min(down,rdown);
+            }
+            front=curr;
+        }
+       return  front[0];
     }
 };
