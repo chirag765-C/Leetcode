@@ -2,6 +2,8 @@ class Solution {
 public:
  int dp2(vector<int>cost,int n,vector<int>&dp){
   if(n<=1){
+           //because it cannot climb two steps
+
       return 0;
   }
      if(dp[n]!=-1){
