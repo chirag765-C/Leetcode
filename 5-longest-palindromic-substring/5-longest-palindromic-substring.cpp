@@ -1,29 +1,31 @@
 class Solution {
 public:
+   string tocheck(string s,int left,int right){
+       while(left>=0 and right<s.size()){
+           if(s[left]==s[right]){
+               left--;
+               right++;
+           }
+       else{
+           break;
+       }
+       }
+       return s.substr(left+1,right-left-1);
+   }
     string longestPalindrome(string s) {
-   int n=s.size();
-        if(n==0){
-            return "";
-        }
-        bool dp[n][n];
-        memset(dp,0,sizeof(dp));
-        for(int i=0;i<n;i++){
-            dp[i][i]=true;
-        }
-        string ans="";
-        ans+=s[0];
-        for(int i=n-1;i>=0;i--){
-            for(int j=i+1;j<n;j++){
-                if(s[i]==s[j]){
-                if(j-i==1 || dp[i+1][j-1]==true){
-                    dp[i][j]=true;
-                    if(ans.size()<j-i+1){
-                        ans=s.substr(i,j-i+1);
-                    }
-                }
-                }
+        string longest;
+        for(int i=0;i<s.size();i++){
+            string odd=tocheck(s,i,i);
+            if(odd.size()>longest.size()){
+                longest=odd;
             }
         }
-        return ans;
+        for(int i=0;i<s.size();i++){
+            string even=tocheck(s,i,i+1);
+            if(even.size()>longest.size()){
+                longest=even;
+                }
+        }
+        return longest;
     }
 };
