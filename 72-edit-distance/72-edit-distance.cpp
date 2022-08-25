@@ -1,28 +1,34 @@
 class Solution {
 public:
     int f(string x,string y,int i,int j,vector<vector<int>>&dp){
-        if(i==0){
-            return j;
-        }
-        if(j==0){
-            return i;
-        }
-        if(dp[i][j]!=-1){
-            return dp[i][j];
-        }
-        if(x[i-1]==y[j-1]){
-            return dp[i][j]= f(x,y,i-1,j-1,dp);
+      int m=x.size();
+        int n=y.size();
+      for(int i=1;i<x.size()+1;i++){
+          for(int j=1;j<y.size()+1;j++){
+              if(x[i-1]==y[j-1]){
+             dp[i][j]= dp[i-1][j-1];
         }
         //insert delete and replace operation
-        return dp[i][j]= 1+ min(f(x,y,i,j-1,dp),min(f(x,y,i-1,j,dp),f(x,y,i-1,j-1,dp)));
+              else{
+                         dp[i][j]= 1+ min(dp[i][j-1],min(dp[i-1][j],dp[i-1][j-1]));
+
+              }
+          }
+      }
+        return dp[m][n];
+        
     }
     int minDistance(string word1, string word2) {
         int m=word1.size();
         int n=word2.size();
-        if(m==0 and n==0){
-            return 0;
+                vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
+
+         for(int i=0;i<word1.size()+1;i++){
+           dp[i][0]=i;
+       }
+        for(int j=0;j<word2.size()+1;j++){
+            dp[0][j]=j;
         }
-        vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
         return f(word1,word2,m,n,dp);
     }
 };
