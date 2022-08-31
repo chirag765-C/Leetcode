@@ -11,22 +11,20 @@
  */
 class Solution {
 public:
-  TreeNode*stb(vector<int>&nums,int i,int j){
-      if(i>j){
-          return NULL;
-      }
-      if(i==j){
-          return new TreeNode(nums[i]);
-          
-      }
-      int m=(i+j)/2;
-      TreeNode*t=new TreeNode(nums[m]);
-      t->left=(stb(nums,i,m-1));
-      t->right=stb(nums,m+1,j);
-      return t;
-      
-  }
+ 
+    TreeNode*tomake(vector<int>nums,int l,int r){
+     if(l>r){
+         return NULL;
+     }
+        int mid=(l+r)/2;
+       TreeNode*head=new TreeNode(nums[mid]);
+        head->left=tomake(nums,l,mid-1);
+        head->right=tomake(nums,mid+1,r);
+        return head;
+    }
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return stb(nums,0,nums.size()-1);
+        int n=nums.size();
+      
+        return tomake(nums,0,n-1);
     }
 };
