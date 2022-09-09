@@ -11,24 +11,23 @@
  */
 class Solution {
 public:
-    int mx;
-    int tofind(TreeNode*root){
-     if(!root){
-         return 0;
-     }
-        int x=tofind(root->left);
-        int y=tofind(root->right);
+    int mx=INT_MIN;
+    int tocheck(TreeNode*root){
+  if(!root){
+      return 0;
+  }
+        int x=tocheck(root->left);
+        int y=tocheck(root->right);
         int temp=max(x,y)+1;
         int ans=max(temp,x+y+1);
-        mx=max(mx,ans);
+        mx=max(ans,mx);
         return temp;
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        if(!root){
-            return 0;
-        }
-     mx=INT_MIN;
-        int y=tofind(root);
-            return mx-1;
+     if(!root){
+ return 0;}
+        int y=tocheck(root);
+        return mx-1;
+         
     }
 };
