@@ -16,9 +16,15 @@ public:
    if(!root){
        return false;
    }
-        if(root->val==target and !root->left and !root->right){
-            return true;
+        if(root->left==NULL and root->right==NULL){
+            if(target==root->val){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
-        return hasPathSum(root->left,target-root->val) || hasPathSum(root->right,target-root->val);
+        return hasPathSum(root->left,target-(root->val)) || hasPathSum(root->right,(target-root->val));
+        
     }
 };
