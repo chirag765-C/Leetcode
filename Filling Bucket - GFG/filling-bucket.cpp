@@ -5,20 +5,18 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
- 
-    int fillingBucket(int N) {
-        // code here
-        vector<int>dp(N+1,-1);
-        if(N<=2){
-            return N;
-        }
-  dp[0]=1;
-  dp[1]=1;
-  for(int i=2;i<=N;i++){
-      dp[i]=(dp[i-2]+dp[i-1])%(100000000);
-  }
-  return dp[N];
-  
+ int mod=1e8;
+    int fillingBucket(int n) {
+if(n==1) return 1;
+if(n==2) return 2;
+
+int a=1,b=2,ans;
+for(int i=3;i<=n;i++){
+    ans=(a+b)%mod;
+    a=b%mod;
+    b=ans%mod;
+}
+  return ans;
     }
 };
 
