@@ -11,13 +11,13 @@ class Solution{
     {
         // code here
         long long f=0;
-        for(long long  i=0;i<N;i++){
+        for(int i=0;i<N;i++){
             f=f^Arr[i];
         }
         int lastbit=f&~(f-1);
         long long x=0;
         long long y=0;
-        for(long long i=0;i<N;i++){
+        for(int i=0;i<N;i++){
             if(Arr[i]&lastbit){
                 x=x^Arr[i];
             }
