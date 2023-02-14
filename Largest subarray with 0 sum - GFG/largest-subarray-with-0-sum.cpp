@@ -12,25 +12,22 @@ class Solution{
     public:
     int maxLen(vector<int>&A, int n)
     {   
-     unordered_map<int ,int>st;
-        int mx=0;
-        int sum=0;
-        for(int i=0;i<n;i++)
-{
-    sum+=A[i];
-    if(st.find(sum)==st.end()){
-       st[sum]=i;
-    }
-    else{
-       
-        mx=max(mx,i-st[sum]);
-        
-    }
-    if(sum==0){
-        mx=max(mx,i+1);
-    }
-}        
-return mx;
+        unordered_map<int,int>mp;
+  int mx=0;
+  int sum=0;
+  mp[0]=-1;
+  for(int i=0;i<n;i++){
+      sum+=A[i];
+      if(mp.find(sum)!=mp.end()){
+          mx=max(mx,i-mp[sum]);
+          
+      }
+      else{
+          mp[sum]=i;
+      }
+  }
+  return mx;
+     
 
     }
 };
