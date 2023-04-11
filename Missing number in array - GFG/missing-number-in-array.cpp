@@ -14,17 +14,17 @@ class Solution{
   public:
     int MissingNumber(vector<int>& array, int n) {
         // Your code goes here
-        unordered_set<int>st;
-       for(int i=0;i<n-1;i++){
-           st.insert(array[i]);
-       }
-       for(int i=1;i<=n;i++){
-           if(st.find(i)==st.end()){
-               return i;
-           }
-       }
-       return -1;
-        
+     unordered_set<int>st;
+     for(int x:array){
+         st.insert(x);
+     }
+     for(int i=1;i<=n;i++){
+         if(st.find(i)==st.end()){
+             return i;
+         }
+     }
+     
+        return -1;
     }
 };
 
