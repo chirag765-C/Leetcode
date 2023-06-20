@@ -115,42 +115,36 @@ class Solution
 {
     public: 
     //Function to convert binary tree to doubly linked list and return it.
-    void inorder(Node*root,vector<Node*>&v){
-        if(root){
-            inorder(root->left,v);
-            v.push_back(root);
-            inorder(root->right,v);
-        }
-    }
+  void inorder(Node*root,Node*&head,Node*&temp,int &f){
+      if(!root){
+          return;
+      }
+      inorder(root->left,head,temp,f);
+      if(f==0){
+          f=1;
+          head=root;
+          temp=root;
+      }
+      else{
+          temp->right=root;
+          temp->right->left=temp;
+          temp=temp->right;
+      }
+      inorder(root->right,head,temp,f);
+  }
+  
     Node * bToDLL(Node *root)
     {
      //if head is null and temp==null SO PREV WILL BE HEAD AND HEAD->RIGHT WILL BE PREV 
         // your code here
-        if(!root){
-            return root;
-        }
-        vector<Node*>v;
-        inorder(root,v);
-        Node*head=NULL;
-        Node*prev;
-        Node*temp=NULL;
-        for(auto it:v){
-            
-            if(head==NULL){
-                head=it;
-                prev=it;
-                
-            }
-            else{
-                temp=it;
-                prev->right=temp;
-                temp->left=prev;
-                // temp->right=NULL;
-                prev=temp;
-                
-            }
-        }
-        return head;
+       if(!root){
+           return NULL;
+       }
+       Node*head=NULL;
+       Node*temp=NULL;
+       int f=0;
+       inorder(root,head,temp,f);
+       return head;
     }
 };
 
