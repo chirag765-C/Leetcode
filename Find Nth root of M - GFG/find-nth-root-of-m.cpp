@@ -5,17 +5,25 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-
 	int NthRoot(int n, int m)
 	{
 	    // Code here.
-	        long long int i = 1;
-	    long long int ans = 1;
-	    while(pow(i, n) <= m){
-	        ans = pow(i, n);
-	        i++;
+	    int l=1;
+	    int h=m;
+	   //  eps=1e-7;
+	    while(l<=h){
+	        int mid=(h+l)/2.0;
+	        if(pow(mid,n)==m){
+	            return mid;
+	        }
+	        else if(pow(mid,n)>m){
+	            h=mid-1;
+	        }
+	        else{
+	            l=mid+1;
+	        }
+	        
 	    }
-	    if(ans == m) return i - 1;
 	    return -1;
 	}  
 };
