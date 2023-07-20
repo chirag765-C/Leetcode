@@ -10,19 +10,17 @@ class Solution{
 	    // Code here.
 	    int l=1;
 	    int h=m;
-	   //  eps=1e-7;
 	    while(l<=h){
-	        int mid=(h+l)/2.0;
+	        int mid=l+(h-l)/2;
 	        if(pow(mid,n)==m){
 	            return mid;
 	        }
-	        else if(pow(mid,n)>m){
-	            h=mid-1;
-	        }
-	        else{
+	        else if(pow(mid,n)<m){
 	            l=mid+1;
 	        }
-	        
+	        else{
+	            h=mid-1;
+	        }
 	    }
 	    return -1;
 	}  
